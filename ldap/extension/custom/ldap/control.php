@@ -91,8 +91,9 @@ class ldap extends control
 
     public function sync()
     {
-        $users = $this->ldap->sync2db($this->config->ldap);
-        echo $users;
+        header('Content-Type:text/json;charset=utf-8');
+        $rst = $this->ldap->sync2db($this->config->ldap);
+        echo json_encode($rst);
     }
 
     public function identify($user, $pwd)
