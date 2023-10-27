@@ -55,7 +55,7 @@ class ldapModel extends model
             ldap_set_option($ds,LDAP_OPT_PROTOCOL_VERSION,3);
             ldap_bind($ds, $config->bindDN, $config->bindPWD);
 
-            $attrs = [$config->uid, $config->mail, $config->name];
+            $attrs = [$config->uid, $config->mail, $config->name, $config->gender];
 
             $rlt = ldap_search($ds, $config->baseDN, $config->searchFilter, $attrs);
             $data = ldap_get_entries($ds, $rlt);
@@ -79,6 +79,7 @@ class ldapModel extends model
             $user->account = $ldapUsers[$i][strtolower($config->uid)][0];
             $user->email = $ldapUsers[$i][strtolower($config->mail)][0];
             $user->realname = $ldapUsers[$i][strtolower($config->name)][0];
+            $user->gender = $ldapUsers[$i][strtolower($config->gender)][0] == $config->genderMaleValue ? 'm' : 'f';
 
             $group->account = $user->account;
             $group->group = (!empty($config->group) ? $config->group : $this->config->ldap->group); //由于默认权限分组标识不在 LDAP 内存储，所以直接从 config 中拿。为了兼容 zentao 自带定时任务所以用了三目运算符
@@ -86,7 +87,7 @@ class ldapModel extends model
             if ($account == $user->account) {
                 $updateRows += $this->dao->update(TABLE_USER)->data($user)->where('account')->eq($user->account)->autoCheck()->exec();
             } else {
-                $insertRst += $this->dao->insert(TABLE_USER)->data($user)->exec();
+                $insertRows += $this->dao->insert(TABLE_USER)->data($user)->exec();
                 $this->dao->insert(TABLE_USERGROUP)->data($group)->exec();
             }
 

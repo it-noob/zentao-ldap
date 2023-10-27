@@ -11,6 +11,17 @@
  */
 ?>
 <?php include $app->getModuleRoot() . 'common/view/header.html.php';?>
+<style>
+.text-inline {
+  display: inline-block;
+  padding-right: 20px;
+}
+.lable-inline {
+  display: inline-block;
+  font-weight: 700;
+  padding-right: 14px;
+}
+</style>
 <div id='mainContent' class='main-content'>
   <div id='titlebar'>
     <div class='heading'>
@@ -63,6 +74,17 @@
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->name; ?></th>
         <td class='w-p50'><?php echo html::input('ldapName', $config->ldap->name, "class='form-control'");?></td>
+      </tr>
+      <tr>
+        <th class='w-p25'><?php echo $lang->ldap->gender; ?></th>
+        <td class='w-p50'>
+          <label class="text-inline"><?php echo html::input('ldapGender', $config->ldap->gender, "class='form-control'");?></label>
+          <label class="lable-inline"><?php echo $lang->ldap->genderMaleValue; ?></label>
+          <label class="text-inline"><?php echo html::input('ldapGenderMaleValue', $config->ldap->genderMaleValue, "class='form-control'");?></label>
+          <label class="lable-inline"><?php echo $lang->ldap->genderFemaleValue; ?></label>
+          <label class="text-inline"><?php echo html::input('ldapGenderFemaleValue', $config->ldap->genderFemaleValue, "class='form-control'");?></label>
+        </td>
+        <td><?php echo $lang->ldap->placeholder->gender;?></td>
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->group; ?></th>

@@ -23,6 +23,9 @@ $lang->ldap->save 			= '保存设置';
 $lang->ldap->test 			= '测试连接';
 $lang->ldap->mail 			= '郵箱字段:';
 $lang->ldap->name  			= '姓名字段:';
+$lang->ldap->gender  			= '性別字段:';
+$lang->ldap->genderMaleValue    = '“男性”值:';
+$lang->ldap->genderFemaleValue    = '“女性”值:';
 $lang->ldap->group  			= '默認許可權:';
 
 $lang->ldap->placeholder->group 	= '為從 LDAP 同步過來的用戶添加一個默認許可權';

@@ -74,6 +74,9 @@ class ldap extends control
                 ."\$config->ldap->uid = '{$this->post->ldapAttr}';\n"
                 ."\$config->ldap->mail = '{$this->post->ldapMail}';\n"
                 ."\$config->ldap->name = '{$this->post->ldapName}';\n"
+                ."\$config->ldap->gender = '{$this->post->ldapGender}';\n"
+                ."\$config->ldap->genderMaleValue = '{$this->post->ldapGenderMaleValue}';\n"
+                ."\$config->ldap->genderFemaleValue = '{$this->post->ldapGenderFemaleValue}';\n"
                 ."\$config->ldap->group = '{$this->post->group}';\n";
 
             $file = fopen("config.php", "w") or die("Unable to open file!");
