@@ -9,7 +9,6 @@
  * @version     $Id: zh-cn.php 5053 2013-07-06 08:17:37Z wyd621@gmail.com $
  * @link        http://www.zentao.net
  */
-
 $lang->ldap->common 		= "LDAP";
 $lang->ldap->setting    	= "设置";
 $lang->ldap->host 			= 'LDAP服务器:';
@@ -28,6 +27,8 @@ $lang->ldap->gender  			= '性别字段:';
 $lang->ldap->genderMaleValue    = '“男性”值:';
 $lang->ldap->genderFemaleValue    = '“女性”值:';
 $lang->ldap->group  			= '默认权限:';
+
+$lang->ldap->syncing 			= '正在同步...';
 
 $lang->ldap->placeholder->group 	= '为从 LDAP 同步过来的用户添加一个默认权限';
 $lang->ldap->placeholder->gender 	= '需要输入LDAP内性别字段“男/女”对应的属性值';

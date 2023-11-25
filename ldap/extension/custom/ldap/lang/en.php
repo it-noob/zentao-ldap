@@ -28,7 +28,10 @@ $lang->ldap->genderMaleValue    = 'Male Value:';
 $lang->ldap->genderFemaleValue    = 'Female Value:';
 $lang->ldap->group  			= 'Default Group:';
 
+$lang->ldap->syncing 			= 'Synchronizing...';
+
 $lang->ldap->placeholder->group 	= 'Add a default group to users who have passed through LDAP.';
+$lang->ldap->placeholder->gender 	= 'Need to enter the attribute value corresponding to the gender field "Male/Female" in LDAP.';
 
 $lang->ldap->methodOrder[5] = 'index';
 $lang->ldap->methodOrder[10] = 'setting';

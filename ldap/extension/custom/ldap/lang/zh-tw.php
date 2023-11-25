@@ -28,7 +28,10 @@ $lang->ldap->genderMaleValue    = '“男性”值:';
 $lang->ldap->genderFemaleValue    = '“女性”值:';
 $lang->ldap->group  			= '默認許可權:';
 
+$lang->ldap->syncing 			= '正在同步...';
+
 $lang->ldap->placeholder->group 	= '為從 LDAP 同步過來的用戶添加一個默認許可權';
+$lang->ldap->placeholder->gender 	= '需要輸入LDAP內性別字段「男/女」對應的屬性值';
 
 $lang->ldap->methodOrder[5] = 'index';
 $lang->ldap->methodOrder[10] = 'setting';

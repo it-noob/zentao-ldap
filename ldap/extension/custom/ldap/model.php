@@ -27,15 +27,16 @@ class ldapModel extends model
 
         return $ret;
     }
-    public function getUserDn($config, $account){
+    public function getUserDn($config, $account) {
         $ret = null;
         $ds = ldap_connect($config->host);
         if ($ds) {
             ldap_set_option($ds,LDAP_OPT_PROTOCOL_VERSION,3);
             ldap_bind($ds, $config->bindDN, $config->bindPWD);
+
             $filter = "($config->uid=$account)";
             $rlt = ldap_search($ds, $config->baseDN, $filter);
-            $count=ldap_count_entries($ds, $rlt);
+            $count = ldap_count_entries($ds, $rlt);
 
             if($count > 0){
                 $data = ldap_get_entries($ds, $rlt);
@@ -48,25 +49,27 @@ class ldapModel extends model
         }
         return $ret;
     }
-    public function getUsers($config)
-    {
+    public function getUsers($config) {
         $ds = ldap_connect($config->host);
         if ($ds) {
             ldap_set_option($ds,LDAP_OPT_PROTOCOL_VERSION,3);
-            ldap_bind($ds, $config->bindDN, $config->bindPWD);
+            $bindRst = ldap_bind($ds, $config->bindDN, $config->bindPWD);
 
-            $attrs = [$config->uid, $config->mail, $config->name, $config->gender];
-
-            $rlt = ldap_search($ds, $config->baseDN, $config->searchFilter, $attrs);
-            $data = ldap_get_entries($ds, $rlt);
-            return $data;
+            if($bindRst){
+                $attrs = [$config->uid, $config->mail, $config->name, $config->gender];
+                $rlt = ldap_search($ds, $config->baseDN, $config->searchFilter, $attrs);
+                $data = ldap_get_entries($ds, $rlt);
+                return $data;
+            } else {
+                echo "ldap - " . ldap_error($ds);
+                die();
+            }
         }
 
         return null;
     }
 
-    public function sync2db($config)
-    {
+    public function sync2db($config) {
         $ldapUsers = $this->getUsers($config);
         $user = new stdclass();
         $group = new stdClass(); // 保存同步 LDAP 数据设置的默认权限分组信息
@@ -92,8 +95,8 @@ class ldapModel extends model
             }
 
             if(dao::isError()) {
-                echo js::error(dao::getError());
-                die(js::reload('parent'));
+                echo "database - " . dao::getError();
+                die();
             }
         }
 
