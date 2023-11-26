@@ -83,6 +83,7 @@ class ldapModel extends model
             $user->email = $ldapUsers[$i][strtolower($config->mail)][0];
             $user->realname = $ldapUsers[$i][strtolower($config->name)][0];
             $user->gender = $ldapUsers[$i][strtolower($config->gender)][0] == $config->genderMaleValue ? 'm' : 'f';
+            $user->join = date("Y-m-d");
 
             $group->account = $user->account;
             $group->group = (!empty($config->group) ? $config->group : $this->config->ldap->group); //由于默认权限分组标识不在 LDAP 内存储，所以直接从 config 中拿。为了兼容 zentao 自带定时任务所以用了三目运算符
