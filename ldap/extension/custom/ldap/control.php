@@ -19,9 +19,15 @@ class ldap extends control
      * @access public
      * @return void
      */
-    public function __construct()
+    // public function __construct()
+    // {
+    //     parent::__construct();
+    //     $this->loadModel('company')->setMenu();
+    // }
+
+    public function __construct($moduleName = '', $methodName = '')
     {
-        parent::__construct();
+        parent::__construct($moduleName, $methodName);
     }
 
     public function index()
@@ -31,6 +37,7 @@ class ldap extends control
 
     public function setting()
     {
+        $this->lang->navGroup->company = 'admin';
         $groups    = $this->dao->select('id, name, role')->from(TABLE_GROUP)->fetchAll();
         $groupList = array('' => '');
         foreach($groups as $group)
