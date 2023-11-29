@@ -21,12 +21,12 @@ install: |
 releases:
   1.4.0:
     zentao:
-      compatible: 16.5,17.0,18.6
+      compatible: 16.5,17.0,18.6,18.9
       incompatible:
     charge: free
     date: 2023-10-28
     conflicts: null
-    depends: null
+    depends: 666
     license: LGPL
     changelog: >
       1. BUG修复：zh-cn.yaml文件不规范导致插件安装时提示“不兼容”的问题 
