@@ -79,9 +79,9 @@ class ldapModel extends model
         $insertRows=0;
         for (; $i < $ldapUsers['count']; $i++) {
             // ldap_get_entries返回的数组属性索引都被转换为小写，如果页面上配置的属性值包含大写字母，则会出现无法获取LDAP属性值的情况。可参考PHP官方手册说明：https://www.php.net/manual/en/function.ldap-get-entries.php
-            $user->account = $ldapUsers[$i][strtolower($config->uid)][0];
-            $user->email = $ldapUsers[$i][strtolower($config->mail)][0];
-            $user->realname = $ldapUsers[$i][strtolower($config->name)][0];
+            $user->account = !empty($ldapUsers[$i][strtolower($config->uid)][0]) ? $ldapUsers[$i][strtolower($config->uid)][0] : "";
+            $user->email = !empty($ldapUsers[$i][strtolower($config->mail)][0]) ? $ldapUsers[$i][strtolower($config->mail)][0] : "";
+            $user->realname = !empty($ldapUsers[$i][strtolower($config->name)][0]) ? $ldapUsers[$i][strtolower($config->name)][0] : "";
             $user->gender = $ldapUsers[$i][strtolower($config->gender)][0] == $config->genderMaleValue ? 'm' : 'f';
             $user->join = date("Y-m-d");
 
