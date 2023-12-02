@@ -34,15 +34,15 @@
     <table class='table table-form'>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->host; ?></th>
-        <td class='w-p50'><?php echo html::input('ldapHost', $config->ldap->host, "class='form-control'");?></td>
+        <td class='w-p50'><?php echo html::input('ldapHost', $config->ldap->host, "class='form-control' placeholder='示例：http://localhost:389'");?></td>
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->version; ?></th>
-        <td class='w-p50'><?php echo html::input('ldapVersion', $config->ldap->version, "class='form-control'");?></td>
+        <td class='w-p50'><?php echo html::input('ldapVersion', !empty($config->ldap->version) ? $config->ldap->version : 3, "class='form-control'");?></td>
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->bindDN; ?></th>
-        <td class='w-p50'><?php echo html::input('ldapBindDN', $config->ldap->bindDN, "class='form-control'");?></td>
+        <td class='w-p50'><?php echo html::input('ldapBindDN', $config->ldap->bindDN, "class='form-control' placeholder='示例：cn=admin,dc=itcast,dc=cn'");?></td>
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->password; ?></th>
@@ -57,32 +57,32 @@
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->baseDN; ?></th>
-        <td class='w-p50'><?php echo html::input('ldapBaseDN', $config->ldap->baseDN, "class='form-control'");?></td>
+        <td class='w-p50'><?php echo html::input('ldapBaseDN', $config->ldap->baseDN, "class='form-control' placeholder='示例：ou=People,dc=itcast,dc=cn'");?></td>
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->filter; ?></th>
-        <td class='w-p50'><?php echo html::input('ldapFilter', $config->ldap->searchFilter, "class='form-control'");?></td>
+        <td class='w-p50'><?php echo html::input('ldapFilter', $config->ldap->searchFilter, "class='form-control' placeholder='示例：(&(isDeleted=false)(isEnabled=true)(status=1))'");?></td>
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->attributes; ?></th>
-        <td class='w-p50'><?php echo html::input('ldapAttr', $config->ldap->uid, "class='form-control'");?></td>
+        <td class='w-p50'><?php echo html::input('ldapAttr', $config->ldap->uid, "class='form-control' placeholder='示例：userName'");?></td>
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->mail; ?></th>
-        <td class='w-p50'><?php echo html::input('ldapMail', $config->ldap->mail, "class='form-control'");?></td>
+        <td class='w-p50'><?php echo html::input('ldapMail', $config->ldap->mail, "class='form-control' placeholder='示例：email'");?></td>
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->name; ?></th>
-        <td class='w-p50'><?php echo html::input('ldapName', $config->ldap->name, "class='form-control'");?></td>
+        <td class='w-p50'><?php echo html::input('ldapName', $config->ldap->name, "class='form-control' placeholder='示例：cn'");?></td>
       </tr>
       <tr>
         <th class='w-p25'><?php echo $lang->ldap->gender; ?></th>
         <td class='w-p50'>
-          <label class="text-inline"><?php echo html::input('ldapGender', $config->ldap->gender, "class='form-control'");?></label>
+          <label class="text-inline"><?php echo html::input('ldapGender', $config->ldap->gender, "class='form-control' placeholder='示例：gender'");?></label>
           <label class="lable-inline"><?php echo $lang->ldap->genderMaleValue; ?></label>
-          <label class="text-inline"><?php echo html::input('ldapGenderMaleValue', $config->ldap->genderMaleValue, "class='form-control'");?></label>
+          <label class="text-inline"><?php echo html::input('ldapGenderMaleValue', $config->ldap->genderMaleValue, "class='form-control' placeholder='示例：1'");?></label>
           <label class="lable-inline"><?php echo $lang->ldap->genderFemaleValue; ?></label>
-          <label class="text-inline"><?php echo html::input('ldapGenderFemaleValue', $config->ldap->genderFemaleValue, "class='form-control'");?></label>
+          <label class="text-inline"><?php echo html::input('ldapGenderFemaleValue', $config->ldap->genderFemaleValue, "class='form-control' placeholder='示例：2'");?></label>
         </td>
         <td><?php echo $lang->ldap->placeholder->gender;?></td>
       </tr>
