@@ -59,9 +59,13 @@ class ldapModel extends model
                 $attrs = [$config->uid, $config->mail, $config->name, $config->gender];
                 $rlt = ldap_search($ds, $config->baseDN, $config->searchFilter, $attrs);
                 $data = ldap_get_entries($ds, $rlt);
+                ldap_unbind($ds);
+                ldap_close($ds);
                 return $data;
             } else {
                 echo "ldap - " . ldap_error($ds);
+                ldap_unbind($ds);
+                ldap_close($ds);
                 die();
             }
         }
