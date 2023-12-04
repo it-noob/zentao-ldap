@@ -19,9 +19,15 @@ class ldap extends control
      * @access public
      * @return void
      */
-    public function __construct()
+    // public function __construct()
+    // {
+    //     parent::__construct();
+    //     $this->loadModel('company')->setMenu();
+    // }
+
+    public function __construct($moduleName = '', $methodName = '')
     {
-        parent::__construct();
+        parent::__construct($moduleName, $methodName);
     }
 
     public function index()
@@ -31,6 +37,7 @@ class ldap extends control
 
     public function setting()
     {
+        $this->lang->navGroup->company = 'admin';
         $groups    = $this->dao->select('id, name, role')->from(TABLE_GROUP)->fetchAll();
         $groupList = array('' => '');
         foreach($groups as $group)
@@ -74,6 +81,9 @@ class ldap extends control
                 ."\$config->ldap->uid = '{$this->post->ldapAttr}';\n"
                 ."\$config->ldap->mail = '{$this->post->ldapMail}';\n"
                 ."\$config->ldap->name = '{$this->post->ldapName}';\n"
+                ."\$config->ldap->gender = '{$this->post->ldapGender}';\n"
+                ."\$config->ldap->genderMaleValue = '{$this->post->ldapGenderMaleValue}';\n"
+                ."\$config->ldap->genderFemaleValue = '{$this->post->ldapGenderFemaleValue}';\n"
                 ."\$config->ldap->group = '{$this->post->group}';\n";
 
             $file = fopen("config.php", "w") or die("Unable to open file!");
@@ -91,8 +101,9 @@ class ldap extends control
 
     public function sync()
     {
-        $users = $this->ldap->sync2db($this->config->ldap);
-        echo $users;
+        header('Content-Type:text/json;charset=utf-8');
+        $rst = $this->ldap->sync2db($this->config->ldap);
+        echo json_encode($rst);
     }
 
     public function identify($user, $pwd)
